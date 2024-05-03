@@ -45,7 +45,13 @@ else
 fi
 
 # Install the current Keystone
-if ! "$ksinstallPath" --install "$frameworkPath/Resources/Keystone.tbz" --force 2>/dev/null ; then
+# 
+# jfilice@csumb.edu
+# Added --remediate flag per Chrome Update Management Strategies - Updates Technical Document (July 2022)
+# https://support.google.com/chrome/a/answer/9982578?hl=en&ref_topic=9023245&sjid=11301561067383923214-NC
+# https://storage.googleapis.com/support-kms-prod/IIlkdLHYfuZQkfqwPPEYCZvQbHOzJSCsnXQh
+# 
+if ! "$ksinstallPath" --remediate --install="$frameworkPath/Resources/Keystone.tbz" --force 2>/dev/null ; then
     exitCode="$?"
     echo "Error: Keystone install failed with code $exitCode"
     exit "$exitCode"
